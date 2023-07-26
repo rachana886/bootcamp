@@ -1,0 +1,332 @@
+test> show dbs
+admin      40.00 KiB
+bootcamp   72.00 KiB
+config    108.00 KiB
+local      40.00 KiB
+-----------------------------------------------------
+test> use bootcamp
+switched to db bootcamp
+-----------------------------------------------------
+bootcamp> db.employee.insertOne({name:"madhuri", age:24, dept:"data"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("64c0a1d30b0217b485b361b7")
+}
+------------------------------------------------------
+bootcamp> db.employee.find()
+[
+  {
+    _id: ObjectId("64c09b88c01a7f511df541f6"),
+    name: 'rachana',
+    dept: 'gnt',
+    age: 21
+  },
+  {
+    _id: ObjectId("64c09c71c01a7f511df541f7"),
+    mobile: 12345,
+    manager: 'sujatha',
+    address: 'bangalore'
+  },
+  {
+    _id: ObjectId("64c0a1750b0217b485b361b6"),
+    name: 'manish',
+    age: 22
+  },
+  {
+    _id: ObjectId("64c0a1d30b0217b485b361b7"),
+    name: 'madhuri',
+    age: 24,
+    dept: 'data'
+  }
+]
+-------------------------------------------------------
+bootcamp> db.employee.insertMany([{name:"lavanya", age:23, dept:"data"},{name:"adarsh", age:21, dept:"data"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("64c0a3220b0217b485b361b8"),
+    '1': ObjectId("64c0a3220b0217b485b361b9")
+  }
+}
+---------------------------------------------------------
+bootcamp> db.employee.findOne({name:"rachana"})
+{
+  _id: ObjectId("64c09b88c01a7f511df541f6"),
+  name: 'rachana',
+  dept: 'gnt',
+  age: 21
+}
+--------------------------------------------------------
+bootcamp> db.product.updateOne({_id:2}, {$set: {age:25}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+---------------------------------------------------------
+bootcamp> db.product.updateOne({_id:2}, {$rename: {ade:"age"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+---------------------------------------------------------
+bootcamp> db.product.insertMany([
+...     { "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate": ISODate("2011-05-14"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },"color":["white","black"],"storage":[64,128,256]},
+...     { "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate": ISODate("2011-09-01") , "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },"color":["white","black","purple"],"storage":[128,256,512]},
+...     { "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate": ISODate("2015-01-14"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 },"color":["blue"],"storage":[16,64,128]},
+...     { "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate": ISODate("2020-05-14"),"spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256,1024]},
+...     { "_id" : 5, "name" : "SmartPhone", "price" : 599,"releaseDate": ISODate("2022-09-14"), "spec" : { "ram" : 4, "screen" : 5.7, "cpu" : 1.66 },"color":["white","orange","gold","gray"],"storage":[128,256]}
+...  ])
+{
+  acknowledged: true,
+  insertedIds: { '0': 1, '1': 2, '2': 3, '3': 4, '4': 5 }
+}
+
+bootcamp> db.product.find()
+[
+  {
+    _id: 1,
+    name: 'xPhone',
+bootcamp>
+    releaseDate: ISODate("2011-05-14T00:00:00.000Z"),
+    spec: { ram: 4, screen: 6.5, cpu: 2.66 },
+    color: [ 'white', 'black' ],
+    storage: [ 64, 128, 256 ]
+  },
+  {
+    _id: 2,
+    name: 'xTablet',
+    price: 899,
+    releaseDate: ISODate("2011-09-01T00:00:00.000Z"),
+    spec: { ram: 16, screen: 9.5, cpu: 3.66 },
+    color: [ 'white', 'black', 'purple' ],
+    storage: [ 128, 256, 512 ]
+  },
+  {
+    _id: 3,
+    name: 'SmartTablet',
+    price: 899,
+    releaseDate: ISODate("2015-01-14T00:00:00.000Z"),
+    spec: { ram: 12, screen: 9.7, cpu: 3.66 },
+    color: [ 'blue' ],
+    storage: [ 16, 64, 128 ]
+  },
+  {
+    _id: 4,
+    name: 'SmartPad',
+    price: 699,
+    releaseDate: ISODate("2020-05-14T00:00:00.000Z"),
+    spec: { ram: 8, screen: 9.7, cpu: 1.66 },
+    color: [ 'white', 'orange', 'gold', 'gray' ],
+    storage: [ 128, 256, 1024 ]
+  },
+  {
+    _id: 5,
+    name: 'SmartPhone',
+    price: 599,
+    releaseDate: ISODate("2022-09-14T00:00:00.000Z"),
+    spec: { ram: 4, screen: 5.7, cpu: 1.66 },
+    color: [ 'white', 'orange', 'gold', 'gray' ],
+    storage: [ 128, 256 ]
+  }
+]
+bootcamp> db.product.find()
+[
+  {
+    _id: 1,
+    name: 'xPhone',
+    price: 799,
+    releaseDate: ISODate("2011-05-14T00:00:00.000Z"),
+    spec: { ram: 4, screen: 6.5, cpu: 2.66 },
+    color: [ 'white', 'black' ],
+    storage: [ 64, 128, 256 ]
+  },
+  {
+    _id: 2,
+    name: 'xTablet',
+    price: 899,
+    releaseDate: ISODate("2011-09-01T00:00:00.000Z"),
+    spec: { ram: 16, screen: 9.5, cpu: 3.66 },
+    color: [ 'white', 'black', 'purple' ],
+    storage: [ 128, 256, 512 ]
+  },
+  {
+    _id: 3,
+    name: 'SmartTablet',
+    price: 899,
+    releaseDate: ISODate("2015-01-14T00:00:00.000Z"),
+    spec: { ram: 12, screen: 9.7, cpu: 3.66 },
+    color: [ 'blue' ],
+    storage: [ 16, 64, 128 ]
+  },
+  {
+    _id: 4,
+    name: 'SmartPad',
+    price: 699,
+    releaseDate: ISODate("2020-05-14T00:00:00.000Z"),
+    spec: { ram: 8, screen: 9.7, cpu: 1.66 },
+    color: [ 'white', 'orange', 'gold', 'gray' ],
+    storage: [ 128, 256, 1024 ]
+  },
+  {
+    _id: 5,
+    name: 'SmartPhone',
+    price: 599,
+    releaseDate: ISODate("2022-09-14T00:00:00.000Z"),
+    spec: { ram: 4, screen: 5.7, cpu: 1.66 },
+    color: [ 'white', 'orange', 'gold', 'gray' ],
+    storage: [ 128, 256 ]
+  }
+]
+---------------------------------------------------------
+bootcamp> db.product.find({price: {$eq: 899}}, {name:1})
+[ { _id: 2, name: 'xTablet' }, { _id: 3, name: 'SmartTablet' } ]
+---------------------------------------------------------
+bootcamp> db.product.find({price:{$lte:699}})
+[
+  {
+    _id: 4,
+    name: 'SmartPad',
+    price: 699,
+    releaseDate: ISODate("2020-05-14T00:00:00.000Z"),
+    spec: { ram: 8, screen: 9.7, cpu: 1.66 },
+    color: [ 'white', 'orange', 'gold', 'gray' ],
+    storage: [ 128, 256, 1024 ]
+  },
+  {
+    _id: 5,
+    name: 'SmartPhone',
+    price: 599,
+    releaseDate: ISODate("2022-09-14T00:00:00.000Z"),
+    spec: { ram: 4, screen: 5.7, cpu: 1.66 },
+    color: [ 'white', 'orange', 'gold', 'gray' ],
+    storage: [ 128, 256 ]
+  }
+]
+---------------------------------------------------------
+bootcamp> db.product.find({price:{$gt:599}})
+[
+  {
+    _id: 1,
+    name: 'xPhone',
+    price: 799,
+    releaseDate: ISODate("2011-05-14T00:00:00.000Z"),
+    spec: { ram: 4, screen: 6.5, cpu: 2.66 },
+    color: [ 'white', 'black' ],
+    storage: [ 64, 128, 256 ]
+  },
+  {
+    _id: 2,
+    name: 'xTablet',
+    price: 899,
+    releaseDate: ISODate("2011-09-01T00:00:00.000Z"),
+    spec: { ram: 16, screen: 9.5, cpu: 3.66 },
+    color: [ 'white', 'black', 'purple' ],
+    storage: [ 128, 256, 512 ]
+  },
+  {
+    _id: 3,
+    name: 'SmartTablet',
+    price: 899,
+    releaseDate: ISODate("2015-01-14T00:00:00.000Z"),
+    spec: { ram: 12, screen: 9.7, cpu: 3.66 },
+    color: [ 'blue' ],
+    storage: [ 16, 64, 128 ]
+  },
+  {
+    _id: 4,
+    name: 'SmartPad',
+    price: 699,
+    releaseDate: ISODate("2020-05-14T00:00:00.000Z"),
+    spec: { ram: 8, screen: 9.7, cpu: 1.66 },
+    color: [ 'white', 'orange', 'gold', 'gray' ],
+    storage: [ 128, 256, 1024 ]
+  }
+]
+---------------------------------------------------------
+bootcamp> db.product.find({$and:[{price:{$eq:899}}, {color:{$in:["white", "black"]}}]})
+[
+  {
+    _id: 2,
+    name: 'xTablet',
+    price: 899,
+    releaseDate: ISODate("2011-09-01T00:00:00.000Z"),
+    spec: { ram: 16, screen: 9.5, cpu: 3.66 },
+    color: [ 'white', 'black', 'purple' ],
+    storage: [ 128, 256, 512 ]
+  }
+]
+---------------------------------------------------------
+
+---------------------------------------------------------
+bootcamp> db.employee.find()
+[
+  {
+    _id: ObjectId("64c09b88c01a7f511df541f6"),
+    name: 'rachana',
+    dept: 'gnt',
+    age: 21
+  },
+  {
+    _id: ObjectId("64c09c71c01a7f511df541f7"),
+    mobile: 12345,
+    manager: 'sujatha',
+    address: 'bangalore'
+  }
+]
+
+bootcamp> db.product.find({$and:[{price:{$eq:899}}, {color:{$in:["white", "black"]}}]})
+[
+  {
+    _id: 2,
+    name: 'xTablet',
+    price: 899,
+    releaseDate: ISODate("2011-09-01T00:00:00.000Z"),
+    spec: { ram: 16, screen: 9.5, cpu: 3.66 },
+    color: [ 'white', 'black', 'purple' ],
+    storage: [ 128, 256, 512 ]
+  }
+]
+------------------------------------------------------
+bootcamp> db.product.find({$or:[{price:899}, {name:"xPhone"}]})
+[
+  {
+    _id: 1,
+    name: 'xPhone',
+    price: 799,
+    releaseDate: ISODate("2011-05-14T00:00:00.000Z"),
+    spec: { ram: 4, screen: 6.5, cpu: 2.66 },
+    color: [ 'white', 'black' ],
+    storage: [ 64, 128, 256 ]
+  },
+  {
+    _id: 2,
+    name: 'xTablet',
+    price: 899,
+    releaseDate: ISODate("2011-09-01T00:00:00.000Z"),
+    spec: { ram: 16, screen: 9.5, cpu: 3.66 },
+    color: [ 'white', 'black', 'purple' ],
+    storage: [ 128, 256, 512 ]
+  },
+  {
+    _id: 3,
+    name: 'SmartTablet',
+    price: 899,
+    releaseDate: ISODate("2015-01-14T00:00:00.000Z"),
+    spec: { ram: 12, screen: 9.7, cpu: 3.66 },
+    color: [ 'blue' ],
+    storage: [ 16, 64, 128 ]
+  }
+]
+--------------------------------------------------------
+bootcamp> db.employee.deleteOne({name:"rachana"})
+{ acknowledged: true, deletedCount: 1 }
+--------------------------------------------------------
+bootcamp> db.employee.deleteMany({dept:"data"})
+{ acknowledged: true, deletedCount: 2 }
+--------------------------------------------------------
