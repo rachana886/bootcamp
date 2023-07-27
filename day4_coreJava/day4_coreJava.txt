@@ -1,0 +1,307 @@
+day 4:
+
+java - high level object oriented programming language, secure and platform independent
+JDk - java development kit
+JRE - java runtime environment
+JVM - java virtual machine
+
+JDK = JRE + JVM + development tools
+JRE = library classes + JVM
+
+main function defined only in the MAIN class
+-----------------------------
+class Car {
+    int modelNo;
+    String brandName;
+    int kilometerDriver;
+
+    String checkCarStatus() {
+        if (kilometerDriver<=5000)
+            return "car is new";
+        else if (kilometerDriver>5000 && kilometerDriver<=20000)
+            return "car is in good condition";
+        return "car is old";
+    }
+}
+
+public class carApp {
+    public static void main(String[] args) {
+        Car car1 = new Car();
+        car1.brandName = "honda";
+        car1.kilometerDriver = 12000;
+        Car car2 = new Car();
+        car2.brandName = "suv";
+        System.out.println(car1.checkCarStatus());
+    }
+}
+--------------------------------
+class carCheck {
+    int product;
+
+    void checkCondition() {
+
+    }
+}
+
+public class carApp2 {
+    public static void main(String[] args) {
+        carCheck car1 = new carCheck();
+        car1.checkCondition();
+    }
+}
+-------------------------------
+class Account {
+    int accountId;
+    String accountHolderName;
+    double balance;
+
+    Account(int accountId, String accountHolderName, double balance) {
+        //System.out.println("this is constructor");
+        //System.out.println(accountId + "\t" + accountHolderName);
+        this.accountId = accountId;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+    }
+
+    void displayDetails() {
+        System.out.println("account ID: " + accountId);
+        System.out.println("account holder name: " + accountHolderName);
+        System.out.println("balance: " + balance);
+    }
+
+    void withdrawMoney(int withdrawAmount) {
+        balance -= withdrawAmount;
+    }
+
+    void depositMoney(int depositAmount) {
+        balance -= depositAmount;
+    }
+
+    void printBalance() {
+        System.out.println("total available balance: " + balance);
+    }
+}
+
+public class accountApp {
+    public static void main(String[] args) {
+        Account account = new Account(1234, "Rachana", 500000);
+        //account.displayDetails();
+        account.depositMoney(4000);
+        account.withdrawMoney(120);
+        account.printBalance();
+        System.out.println(account.balance);
+    }
+}
+------------------------------------------
+class Employee {
+    int idNo;
+    String name, department;
+
+    public Employee (int idNo, String name, String department) {
+        super();
+        this.department = department;
+        this.idNo = idNo;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "idNo=" + idNo +
+                ", name='" + name + '\'' +
+                ", department='" + department + '\'' +
+                '}';
+    }
+}
+
+public class stringDemo {
+    public static void main(String[] args) {
+        Employee employee = new Employee(1, "Rachana", "GNT");
+        int salary = 40000;
+        System.out.println(salary);
+        System.out.println(employee);
+    }
+}
+----------------------------------------------
+package module1;
+
+public class classA {
+    private int varA=1;
+    protected int varB=2, varC=3;
+    public int varD=4;
+
+    public static void main(String[] args){
+        classA test1 = new classA();
+        System.out.println(test1.varA);
+        System.out.println(test1.varB);
+        System.out.println(test1.varC);
+        System.out.println(test1.varD);
+    }
+}
+------------------------------------------------
+package module1;
+
+public class classB {
+    public static void main() {
+        classA test2 = new classA();
+        System.out.println(test2.varA);
+        System.out.println(test2.varB);
+        System.out.println(test2.varC);
+        System.out.println(test2.varD);
+    }
+}
+-------------------------------------------
+package module2;
+import module1.classA;
+public class classC {
+    public static void main() {
+        classA test3 = new classA();
+        System.out.println(test3.varA);
+        System.out.println(test3.varB);
+        System.out.println(test3.varC);
+        System.out.println(test3.varD);
+    }
+}
+----------------------------------------------
+package module2;
+import module1.classA;
+
+public class classD extends classA{
+    public static void main(String[] args) {
+        classA test4 = new classA();
+        System.out.println(test4.varA);
+        System.out.println(test4.varB);
+        System.out.println(test4.varC);
+        System.out.println(test4.varD);
+    }
+}
+-------------------------------------------
+package day2encapsulation;
+
+public class encapsulationDemo {
+    public static void main(String[] args) {
+        Employee employee = new Employee();
+        //employee.name = "Rachana"; -> variables initialized as private
+        //employee.idNo = 121;
+        employee.setIdNo(21);
+        employee.setName("Rachana");
+
+        System.out.println(employee.getIdNo());
+        System.out.println(employee.getName());
+    }
+}
+
+
+
+
+package day2encapsulation;
+
+public class Employee {
+    private int idNo;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getIdNo() {
+        return idNo;
+    }
+    public void setIdNo(int idNo) {
+        this.idNo = idNo;
+    }
+}
+
+
+
+package day2encapsulation;
+
+class Bank {
+    int amount = 1; //global variable
+}
+
+class Axis extends Bank {
+    int amount = 2; //global variable
+    void printAmount() {
+        int amount = 3; //local variable
+        System.out.println(super.amount);//access parent's variable
+        System.out.println(this.amount);//access child's variable
+        System.out.println(amount);//access local variable
+    }
+}
+
+public class superDemo {
+    public static void main(String[] args) {
+        Axis axis = new Axis();
+        axis.printAmount();
+    }
+}
+--------------------------------------------------------
+package day2inheritance;
+
+class Person {
+    public Person() {
+        System.out.println("person constructor");
+    }
+}
+
+class Employee extends Person {
+    public Employee() {
+        System.out.println("employee constructor");
+    }
+}
+
+public class inheritanceDemo1 {
+    public static void main(String[] args) {
+        Person person = new Person();
+        Employee employee = new Employee();
+    }
+}
+--------------------------------------------------------
+package day2inheritance;
+class Parent {
+    void parentName() {
+        System.out.println("Parent: Manish");
+    }
+}
+class Child extends Parent {
+    void parentName() {
+        super.parentName();
+        System.out.println("Child: Rachana");
+    }
+}
+public class singleInheritance {
+    public static void main(String[] args) {
+        Child child = new Child();
+        //child.childName();
+        child.parentName();
+    }
+}
+---------------------------------------------------------
+import java.util.Scanner;
+
+public class practiseFile {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("enter your name");
+        String name = input.nextLine();
+        System.out.println("name: " + name);
+    }
+}
+---------------------------------------------------------
+import java.util.Scanner;
+
+public class practiseFile {
+    public static void main(String[] args) {
+        Scanner number = new Scanner(System.in);
+        System.out.println("enter a number: ");
+        int value = number.nextInt();
+        if(value%2==0)
+            System.out.println("number is even");
+        else System.out.println("number is odd");
+    }
+}
+
+
