@@ -1,0 +1,181 @@
+-> interface contains abstract methods and public static final variables
+
+-> methods - normal and abstract
+
+-> class to class - extends
+   interface to class - implements 
+   interface to interface - extends
+
+-> loosley coupled - connect java files across packages
+
+-> exception handling:
+ - disrupts the normal flow of the code
+ - error and exception
+ - error - syntax error - missing of ; " { }
+ - exception - logical error, arrayIndexOutOfBound
+ - java has inbuilt keywords and classes to handle exception
+ - need to call the right exeption
+----------------------------------------------------------------------------
+import java.util.Scanner;
+
+public class practiseFile {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Scanner input2 = new Scanner(System.in);
+        System.out.println("enter the table value: ");
+        int value = input.nextInt();
+        System.out.println("enter the number of times you want it to printed: ");
+        int number = input2.nextInt();
+        for(int i=1; i<=number; i++) {
+            System.out.println(value +"*" + i + "=" + (value*i));
+        }
+    }
+}
+-------------------------------------------------------
+package day5Static;
+
+class Employee {
+    int id;
+    String name;
+    static String department;
+
+    void display(int id, String name) {
+        System.out.println(id +"\t"+ name +"\t"+ department);
+    }
+}
+public class staticDemo {
+    public static void main(String[] args) {
+        Employee.department = "GNT";
+        Employee e1 = new Employee();
+        Employee e2 = new Employee();
+        e1.display(1, "rachana");
+        e2.display(2, "manish");
+    }
+}
+------------------------------------------------------------
+package day5Static;
+
+class Parent {
+    int id;
+    public Parent (int id) {
+        System.out.println("parent " + id);
+    }
+}
+class Child extends Parent {
+    public Child() {
+        super(90);
+        System.out.println("child");
+    }
+}
+public class superDemo {
+    public static void main(String[] args) {
+        Child child = new Child();
+    }
+}
+---------------------------------------------------------
+package day5Static;
+
+class Flipkart {
+    void display(int id) {}
+    void display(String name) {
+        System.out.println("Amazon");
+    }
+}
+public class overloadingJava {
+    public static void main(String[] args) {
+        Flipkart flipkart = new Flipkart();
+        flipkart.display(8);
+    }
+}
+-----------------------------------------------------------
+package loosleyCoupling;
+interface Bank {
+    int amount = 5000;
+    void greet();
+}
+
+interface RBI extends Bank {
+    void atmGuideLines();
+}
+
+class Axis implements RBI {
+    public void greet() {
+        System.out.println("Welcome all");
+    }
+    public void atmGuideLines() {
+        System.out.println("Safety rules for ATM");
+    }
+}
+public class interfaceDemo {
+    public static void main(String[] args) {
+        Axis axis = new Axis();
+        axis.greet();
+    }
+}
+----------------------------------------------------------
+package com.telstra.app;
+import com.telstra.service.bookingService;
+
+public class mainApp {
+    public static void main(String[] args) {
+        bookingService bookingservice = new bookingService();
+        bookingservice.bookTicket();
+    }
+}
+
+
+package com.telstra.service;
+import com.telstra.dao.mySQL;
+import com.telstra.dao.oracle;
+import com.telstra.dao.dbConnect;
+public class bookingService {
+    dbConnect dbconnect;
+    public bookingService() {
+        dbconnect = new oracle();
+    }
+    public void bookTicket() {
+        dbconnect.databaseProperty();
+        System.out.println("ticket booking logic");
+    }
+
+}
+
+
+package com.telstra.dao;
+
+public interface dbConnect {
+    void databaseProperty();
+}
+
+
+package com.telstra.dao;
+
+public class oracle implements dbConnect {
+    public void databaseProperty() {
+        System.out.println("connecting to oracle database");
+    }
+}
+
+
+package com.telstra.dao;
+
+public class mySQL implements dbConnect {
+    public void databaseProperty() {
+        System.out.println("connecting to mySQL database");
+    }
+}
+--------------------------------------------------------------
+public class exceptionHandling {
+    public static void main(String[] args) {
+        try {
+            System.out.println(2/0);
+        }
+        catch(ArithmeticException e) {
+            System.out.println("something went wrong");
+        }
+        System.out.println("print statement 1");
+        System.out.println("print statement 2");
+        System.out.println("print statement 3");
+        System.out.println("print statement 4");
+    }
+}
