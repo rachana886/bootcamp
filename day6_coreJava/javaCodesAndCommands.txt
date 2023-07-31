@@ -1,0 +1,195 @@
+try - specify where to keep exception code
+catch - handle the excpeption
+throw - throw exception
+finally - execute important part of code, irrespective of data handled
+throws - declare exception
+
+maven - build tool, can manage project dependencies
+
+framework - half built solution where classes and methods are avilable
+collection - group of heterogenous objets
+-------------------------------------------------
+package com.telstra.day6.exceptionHandling;
+class User {
+    //int age;
+    void voteAge(int age) {
+        if(age<=18)
+            System.out.println("not eligible to vote");
+        else throw new ArithmeticException("eligible to vote");
+    }
+}
+
+public class throwDemo {
+    public static void main(String[] args) {
+        User user = new User();
+        user.voteAge(12);
+    }
+}
+-----------------------------------------------------
+package com.telstra.day6.exceptionHandling;
+import java.io.IOException;
+
+class User1 {
+    void ValidAge(int age) throws IOException {
+        if(age>=18)
+            System.out.println("Valid age");
+        else throw new IOException("Not a valid age");
+    }
+}
+public class throwsDemo {
+    public static void main(String[] args) throws IOException {
+        User1 user1 = new User1();
+        try {
+            user1.ValidAge(20);
+        }
+        catch(Exception e) {
+            System.out.println("Exception handled");
+        }
+    }
+}
+---------------------------------------------------
+package com.telstra.day6.exceptionHandling;
+
+class ageExceptionHandler extends RuntimeException {
+    String msg;
+    ageExceptionHandler(String msg) {
+        //super();
+        this.msg = msg;
+    }
+    public String getMsg() {
+        return msg;
+    }
+}
+
+class Customer {
+    void checkAge (int age) {
+        if(age>=18) System.out.println("Age is valid");
+        else throw new ageExceptionHandler("Age is not valid");
+    }
+}
+
+public class userDefinedException {
+    public static void main(String[] args) {
+        Customer c1 = new Customer();
+        try {
+            c1.checkAge(12);
+        }
+        catch(ageExceptionHandler e) { System.out.println(e.getMsg()); }
+    }
+}
+-------------------------------------------------
+package com.telstra.model;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
+@NoArgsConstructor
+@Setter
+@Getter
+@AllArgsConstructor
+@ToString
+
+//@Data
+
+public class Employee {
+    int id;
+    String name;
+    String dept;
+}
+
+
+
+package com.telstra.app;
+import com.telstra.model.Employee;
+
+public class LombokDemo {
+
+    public static void main(String[] args) {
+        Employee e1=new Employee(4,"hithu","ceo");
+        Employee e2=new Employee();
+
+        e2.setId(4);
+        e2.setDept("finance");
+        e2.setName("leo");
+
+        System.out.println(e1.getName()+" "+e1.getDept()+" "+e1.getId());
+        System.out.println(e2.getName()+" "+e2.getDept()+" "+e2.getId());
+
+        System.out.println(e1);
+        System.out.println(e2);
+    }
+
+}
+-----------------------------------------------------
+package com.telstra.debugging;
+
+public class DebugDemo {
+    public static void main(String[] args) {
+        int sum=0;
+        for(int i=1; i<=5; i++) {
+            sum = sum+i;
+        }
+        System.out.printf("Sum: %d", sum);
+    }
+}
+------------------------------------------------------
+package com.telstra.debugging;
+public class Account {
+
+    private int id;
+    private String name;
+    void setId(int id) {this.id = id;}
+    void setName(String name) {this.name = name;}
+    public int getId() {return id;};
+    public String getName() {return name;}
+    void displayBalance() {
+        System.out.println("Balance: 2000");
+    }
+}
+
+
+
+package com.telstra.debugging;
+import com.telstra.debugging.Account;
+public class AccountingTest {
+    public static void main(String[] args) {
+        Account a = new Account();
+        a.setId(1);
+        a.setName("Rachana");
+        System.out.println(a.getId());
+        System.out.println(a.getName());
+    }
+}
+-------------------------------------------------------
+package com.telstra.collection;
+
+import java.util.ArrayList;
+
+public class ArrayListDemo {
+    public static void main(String[] args) {
+        ArrayList obj = new ArrayList();
+        System.out.println(obj.size());
+        obj.add(1);
+        obj.add(2);
+        System.out.println(obj.size());
+        System.out.println(obj);
+    }
+}
+------------------------------------------------------
+package com.telstra.collection;
+
+import java.util.ArrayList;
+
+public class GenericCollection {
+    public static void main(String[] args) {
+        ArrayList<Integer> num1 = new ArrayList<Integer>();
+        num1.add(1); num1.add(2); num1.add(3); num1.add(4); num1.add(5);
+        ArrayList<Integer> num2 = new ArrayList<Integer>();
+        num2.add(7); num2.add(9); num2.add(9); num2.add(10); num2.add(11);
+        num2.addAll(num1);
+        System.out.println(num2);
+    }
+}
