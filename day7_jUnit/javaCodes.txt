@@ -1,0 +1,144 @@
+List:
+ArrayList - store elements dynamically
+LinkedList - uses double link
+Vector - synchronized unlike ArrayList
+Stack - LIFO
+
+Set:
+no duplicate elements
+HashSet - given order
+Linked Hash Set - inserted order
+TreeSet - sorted order
+---------------------------------------------
+package com.telstra.listDemo;
+
+import java.util.Stack;
+
+public class StackDemo {
+    public static void main(String[] args) {
+        Stack<Integer> nums = new Stack<>();
+        nums.add(1);
+        nums.push(2);
+        nums.push(3);
+
+        System.out.println(nums);
+        nums.pop();
+        System.out.println(nums);
+    }
+}
+----------------------------------------------
+package com.telstra.listDemo;
+
+import java.util.HashSet;
+
+public class SetDemo {
+    public static void main(String[] args) {
+        HashSet<String> fruits = new HashSet<>();
+        fruits.add("mango");
+        fruits.add("banana");
+        fruits.add("berries");
+        fruits.add("mango");
+        fruits.add("coconut");
+        System.out.println(fruits);
+    }
+}
+
+[banana, berries, mango, coconut]
+------------------------------------------------
+package com.telstra.listDemo;
+
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+
+public class SetDemo {
+    public static void main(String[] args) {
+        LinkedHashSet<String> fruits = new LinkedHashSet<>();
+        fruits.add("mango");
+        fruits.add("banana");
+        fruits.add("berries");
+        fruits.add("mango");
+        fruits.add("coconut");
+        System.out.println(fruits);
+    }
+}
+
+[mango, banana, berries, coconut]
+--------------------------------------------------
+package com.telstra.listDemo;
+
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.TreeSet;
+
+public class SetDemo {
+    public static void main(String[] args) {
+        TreeSet<String> fruits = new TreeSet<>();
+        fruits.add("mango");
+        fruits.add("banana");
+        fruits.add("berries");
+        fruits.add("mango");
+        fruits.add("coconut");
+        System.out.println(fruits);
+    }
+}
+
+[banana, berries, coconut, mango]
+-----------------------------------------------------
+package com.telstra.listDemo;
+
+import java.util.HashMap;
+//import java.util.HashSet;
+//import java.util.LinkedHashSet;
+//import java.util.TreeSet;
+
+public class SetDemo {
+    public static void main(String[] args) {
+        HashMap<Integer, String> info = new HashMap<>();
+        info.put(1, "Rachana");
+        info.put(2, "Manish");
+        info.put(3, "Arjun");
+        info.put(4, "Himayathi");
+        System.out.println(info);
+
+        System.out.println(info.get(4));
+        System.out.println(info.containsKey(3));
+        System.out.println(info.containsValue("Arjun"));
+    }
+}
+
+{1=Rachana, 2=Manish, 3=Arjun, 4=Himayathi}
+Himayathi
+true
+true
+---------------------------------------------------
+package com.telstra.listDemo;
+
+import java.util.HashMap;
+//import java.util.HashSet;
+//import java.util.LinkedHashSet;
+//import java.util.TreeSet;
+
+public class SetDemo {
+    public static void main(String[] args) {
+        HashMap<Integer, String> info = new HashMap<>();
+        info.put(1, "Rachana");
+        info.put(2, "Manish");
+        info.put(3, "Arjun");
+        info.put(4, "Himayathi");
+        System.out.println(info);
+
+        System.out.println(info.values());
+        System.out.println(info.keySet());
+
+	for(Integer key : info.keySet())
+            System.out.println(key);
+    }
+}
+
+{1=Rachana, 2=Manish, 3=Arjun, 4=Himayathi}
+[Rachana, Manish, Arjun, Himayathi]
+[1, 2, 3, 4]
+1
+2
+3
+4
