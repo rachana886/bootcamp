@@ -1,0 +1,33 @@
+java coding practises:
+
++ why is it necessary?
+-> developing high quality software
+-> SonarQube can be used
+
++ uses:
+-> maintainability
+-> debugging
+-> scalability
+-> easier to collaborate
+-> easier to document
+-> efficient
+-> easier to read
+
++ methods to write clean java code:
+-> use a standard project structure
+-> have a proper naming convention
+-> should be readable and understandable
+-> use meaningful commenst and documentation
+-> proper whitespaces and indentation (formatting)
+-> keep it simple
+-> try to reduct repetitive code
+-> logging
+
+java naming convention:
+
+-> class: start with uppercase and should be a noun
+-> interface: start with uppercase and should be an adjective
+-> method: start with lowercase and should be a verb. use camel case for multiple words
+-> variable: start with lowercase, use camel case for multiple words, do not use a single alphabet
+-> package: start with lower case, use (.) notation for multiple words
+-> constant: should be in uppercase, multiple words should be seperated by a (_)
