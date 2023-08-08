@@ -1,0 +1,29 @@
+C:\GitLab-Runner>gitlab-runner.exe register
+Runtime platform                                    arch=amd64 os=windows pid=10524 revision=674e0e29 version=16.2.1
+Created missing unique system ID                    system_id=s_adccd421083a
+Enter the GitLab instance URL (for example, https://gitlab.com/):
+https://gitlab.com/
+Enter the registration token:
+GR13489415MmYyJ6hm8ctbZY-SVDy
+Enter a description for the runner:
+[LAPTOP-1IEKH577]: windows machine
+Enter tags for the runner (comma-separated):
+powershell,windows
+Enter optional maintenance note for the runner:
+none
+WARNING: Support for registration tokens and runner parameters in the 'register' command has been deprecated in GitLab Runner 15.6 and will be replaced with support for authentication tokens. For more information, see https://gitlab.com/gitlab-org/gitlab/-/issues/380872
+Registering runner... succeeded                     runner=GR13489415MmYyJ6h
+Enter an executor: docker, shell, docker-autoscaler, custom, parallels, ssh, virtualbox, docker+machine, instance, kubernetes, docker-windows:
+shell
+Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
+
+Configuration (with the authentication token) was saved in "C:\\GitLab-Runner\\config.toml"
+
+
+C:\GitLab-Runner>gitlab-runner.exe install
+Runtime platform                                    arch=amd64 os=windows pid=5688 revision=674e0e29 version=16.2.1
+
+C:\GitLab-Runner>gitlab-runner.exe start
+Runtime platform                                    arch=amd64 os=windows pid=20636 revision=674e0e29 version=16.2.1
+
+C:\GitLab-Runner>
