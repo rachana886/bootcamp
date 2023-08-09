@@ -1,0 +1,189 @@
+package com.telstra.restdemo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class RestdemoApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(RestdemoApplication.class, args);
+	}
+}
+
+
+package com.telstra.restdemo.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("api/v1")
+public class HelloWorldController {
+    @GetMapping("/message")
+    public String display() {return "Welcome to RESTapi";}
+    @GetMapping("/rachana")
+    public String display2() {return "Rachana Narahari";}
+}
+
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.2)
+
+2023-08-08T10:50:14.519+05:30  INFO 14388 --- [           main] c.telstra.restdemo.RestdemoApplication   : Starting RestdemoApplication using Java 17.0.8 with PID 14388 (C:\Users\Rachana Narahari\Downloads\restdemo\restdemo\target\classes started by Rachana Narahari in C:\Users\Rachana Narahari\Downloads\restdemo)
+2023-08-08T10:50:14.522+05:30  INFO 14388 --- [           main] c.telstra.restdemo.RestdemoApplication   : No active profile set, falling back to 1 default profile: "default"
+2023-08-08T10:50:16.601+05:30  INFO 14388 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-08-08T10:50:16.621+05:30  INFO 14388 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-08T10:50:16.622+05:30  INFO 14388 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-08-08T10:50:16.863+05:30  INFO 14388 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-08T10:50:16.869+05:30  INFO 14388 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2224 ms
+2023-08-08T10:50:17.641+05:30  INFO 14388 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-08-08T10:50:17.656+05:30  INFO 14388 --- [           main] c.telstra.restdemo.RestdemoApplication   : Started RestdemoApplication in 3.788 seconds (process running for 4.373)
+2023-08-08T10:50:30.898+05:30  INFO 14388 --- [nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-08T10:50:30.898+05:30  INFO 14388 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-08-08T10:50:30.900+05:30  INFO 14388 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+
+--------------------------------------------------------------------------------------------
+package com.telstra.restdemo.controller;
+
+import com.telstra.restdemo.model.Employee;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+
+@RestController
+@RequestMapping("/api/rachana")
+public class EmployeeController {
+    ArrayList<Employee> employees = new ArrayList<Employee>();
+    public EmployeeController() {
+        employees.add(new Employee(1, "Rachana", "GNT", 45000, 23));
+        employees.add(new Employee(2, "Manish", "HR", 65000, 22));
+        employees.add(new Employee(3, "Lavanya", "Developer", 49000, 29));
+    }
+
+    @PostMapping("/employee")
+    public String addEmployee(@RequestBody Employee employee) {
+        employees.add(employee);
+        return "Employee added successfully";
+    }
+
+    @GetMapping("/employee")
+    public ArrayList<Employee> getAllEmployees() {
+        return employees;
+    }
+
+    @GetMapping("/employee/{id}")
+    public Employee getEmployeeById(@PathVariable int id) {
+        Employee emp = null;
+        for (Employee employee : employees) {
+            if(employee.getId() == id) {
+                emp = new Employee(employee.getId(), employee.getName(), employee.getDept(), employee.getSalary(), employee.getAge());
+                //return employee;
+            }
+        }
+        return emp;
+    }
+}
+------------------------------------------------------------------------
+//aplication.properties
+server.port = 8090
+spring.datasource.url = jdbc:mysql://localhost:3306/restapi
+spring.datasource.username = root
+spring.datasource.password = Appajipoppy01*
+//spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQLDialect
+spring.datasource.driver-class-name = com.mysql.cj.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto = update
+
+//EmployeeRepository.java
+package com.telstra.crudrest.repository;
+import com.telstra.crudrest.model.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+}
+
+//Employee.java
+package com.telstra.crudrest.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity //connects variables with mysql
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Table(name = "emp1")
+
+public class Employee {
+    @Id
+    private int id;
+    private String name;
+    private String dept;
+    private int salary;
+    private int age;
+}
+
+//EmployeeController.java
+package com.telstra.crudrest.controller;
+
+import com.telstra.crudrest.model.Employee;
+import com.telstra.crudrest.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("api/v1")
+public class EmployeeController {
+    @Autowired
+    EmployeeRepository employeeRepository;
+    @PostMapping("/employee")
+    public String addEmployee(@RequestBody Employee employee) {
+        employeeRepository.save(employee);
+        return "Employee added successfully";
+    }
+
+    @GetMapping("/employee")
+    public List<Employee> viewEmployee() {
+        return employeeRepository.findAll();
+    }
+
+    @GetMapping("/employee/{id}")
+    public Employee getEmpById(@PathVariable int id) {
+        return employeeRepository.findById(id).get();
+    }
+
+    @DeleteMapping("/employee/{id}")
+    public String deleteEmpById(@PathVariable int id) {
+        employeeRepository.deleteById(id);
+        return "Employee deleted successfully";
+    }
+}
+
+
+//CrudRestApplication.java
+package com.telstra.crudrest;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CrudrestApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CrudrestApplication.class, args);
+	}
+
+}
+
