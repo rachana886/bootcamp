@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <title>Bootstrap Practise</title>
+</head>
+<body>
+    <div class="container border m-3">
+        <h1>Web Page</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, aspernatur?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, blanditiis.</p>
+    </div>
+
+    <div class="container-sm container-md border m-3 p-3">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, voluptatum! Quia enim neque, illum eligendi deserunt harum debitis non doloremque.
+    </div>
+
+    <div class="container-lg border m-3 p-3">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque debitis, expedita molestiae nisi qui recusandae suscipit labore laborum ipsam dolore?
+    </div>
+
+    <div class="container border">
+        <div class="row bg-primary">
+            <div class="col">Name</div>
+            <div class="col">Department</div>
+            <div class="col">Age</div>
+        </div>
+        <div class="row">
+            <div class="col-sm">Rachana</div>
+            <div class="col-sm">GNT</div>
+            <div class="col-sm">24</div>
+        </div>
+        <div class="row">
+            <div class="col-md">Madhuri</div>
+            <div class="col-md">Data</div>
+            <div class="col-md">22</div>
+        </div>
+    </div>
+
+    <table class="table-dark table">
+        <thead>
+            <tr>
+                <th scope="col">ID no</th>
+                <th scope="col">Name</th>
+                <th scope="col">Department</th>
+                <th scope="col">Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row">1</td>
+                <td>Rachana</td>
+                <td>GNT</td>
+                <td>24</td>
+            </tr>
+            <tr>
+                <td scope="row">2</td>
+                <td>Manish</td>
+                <td>Data</td>
+                <td>23</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form action="">
+        <div class="mb-3">
+            <label for="formControl" class="form-label">E-Mail</label>
+            <input class="form-control" type="email" name="" id="formControl" placeholder="example@gmail.com">
+        </div>
+        <div>
+            <label for="textArea" class="form-label">Summary</label>
+            <textarea class="form-control" name="" id="textArea" cols="30" rows="3"></textarea>
+        </div>
+        <div class="form-check">
+            <label for="" class="form-check-label">Check Box 1</label>
+            <input type="checkbox" class="form-check-input" name="" id="">
+        </div>
+    </form>
+
+    <div class="container">
+        <div class="d-flex bg-dark text-white">
+            <div class="p-2 border"> Item 1</div>
+            <div class="p-2 border"> Item 1</div>
+            <div class="p-2 border"> Item 1</div>
+            <div class="p-2 border"> Item 1</div>
+            <div class="p-2 border"> Item 1</div>
+            <div class="p-2 border"> Item 1</div>
+        </div>
+    </div>
+
+</body>
+</html>
