@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Bootcamp document</title>
+  </head>
+  <body>
+    <h3>Heading</h3>
+    <p><b>Lorem ipsum dolor sit amet.</b></p>
+    <p><i>Lorem ipsum dolor sit amet.</i></p>
+    <p><u>Lorem ipsum dolor sit amet.</u></p>
+    <hr>
+    <h3>Heading</h3>
+    <p>hello<sub>2</sub></p>
+    <p>hello<sup>2</sup></p>
+    <hr>
+    <h3>Heading</h3>
+    <!-- <img class="screenshot" src="Screenshot (15).png" alt="Screenshot" /> -->
+    <br>
+    <a href="https://www.w3schools.com/html/html_images.asp" target="_parent">Guide to adding images</a>
+    <br>
+    <a href="mailto:rach@gmail.com">Contact Us</a>
+    <hr>
+    <h3>Heading</h3>
+    <ul type="square">
+        <li>Coffee</li>
+        <ul>
+            <li>Frappe</li>
+            <li>Strawberry Foam</li>
+        </ul>
+        <li>Tea</li>
+        <li>Juice</li>
+    </ul>
+
+    <ol>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Juice</li>
+    </ol>
+    
+    <dl>
+        <dt><b>Coffee</b></dt>
+        <dd>- Milk and cofeepowder</dd>
+        <dt><b>Tea</b></dt>
+        <dd>- Milk and tea powder</dd>
+    </dl>
+
+    <hr>
+
+    <table width="400px">
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Rachana</td>
+            <td>GNT</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Manish</td>
+            <td>Data</td>
+            <td>23</td>
+        </tr>
+    </table>
+
+    <hr>
+    <form action="">
+        <label for="user">Username: </label>
+        <input type="text" name="user" id="user" placeholder="Username" autofocus="on"> <br>
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" placeholder="Password"> <br>
+
+        <input type="radio" name="gender" value="male" checked> Male
+        <input type="radio" name="gender" value="female">Female <br>
+        <input type="submit" name="" value="Submit"> <br>
+
+        <input type="checkbox" name="hobby1"> Crochet
+        <input type="checkbox" name="hobby2"> Knitting
+        <input type="checkbox" name="hobby3"> Drawing <br>
+
+        <select name="" id="">
+            <option value="" selected hidden>Choose country</option>
+            <option value="india">India</option>
+            <option value="japan">Japan</option>
+            <option value="china">China</option>
+            <option value="nepal">Nepal</option>
+        </select> <br>
+
+        <input type="date" name="" id=""> <br>
+        <input type="month" name="" id=""> <br>
+        <input type="week" name="" id=""> <br>
+        <input type="number" placeholder="Enter a number"> <br>
+    </form>
+
+  </body>
+</html>
+------------------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CSS Practise</title>
+
+<style>
+   h1 {
+    color: blueviolet;
+   }
+</style>
+
+</head>
+<body>
+    <h1 class="para1">Heading 1</h1>
+    <p class="para2">This is paragraph 2</p>
+</body>
+</html>
+-------------------------------------------------
+.screenshot {
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+p {
+    background-color: blue;
+}
